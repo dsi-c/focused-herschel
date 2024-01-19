@@ -1,0 +1,72 @@
+<mvc:View
+	controllerName="ui5.application.controller.App"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	displayBlock="true"
+>
+	<List
+		id="CharmList"
+		headerText="{i18n>mdlcharmListTitle}"
+		class="sapUiResponsiveMargin"
+		width="auto"
+		mode="None"
+		items="{
+			path : 'mdlcharm>/Charms',
+			sorter : {
+				path : 'CHANGED_TMS',
+				descending: false
+			}
+		}">
+		<headerToolbar>
+			<OverflowToolbar>
+
+			    <SearchField width="50%" search=".onFiltermdlcharms" />		
+				<ToolbarSpacer />
+				<Button tooltip="Sort"
+						icon="sap-icon://sort"
+						press="handleSortButtonPressed"/>				
+			</OverflowToolbar>		
+		</headerToolbar>
+
+		<CustomListItem class='zli'>
+			<FlexBox alignItems="Start">
+				<Link text="{mdlcharm>OBJECT_ID} {mdlcharm>DESCRIPTION}" 
+				      href="{mdlcharm>CHARM_URL}" 
+					  emphasized="true"
+					  style="min-width:500px" 
+					  width="100%" 
+					  target="_blank"
+					  class="">
+			     	<layoutData>
+						<FlexItemData growFactor="5" />
+					</layoutData>
+				</Link>
+
+				<Button text="2" width="100%" type="Reject" class="sapUiSmallMarginEnd">
+					<layoutData>
+						<FlexItemData  />
+					</layoutData>
+				</Button>
+				<Button text="3" width="100%" type="Accept" >
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+				</Button>
+			</FlexBox>
+
+			<HBox>
+				<core:Icon size="2rem" src="sap-icon://attachment-photo" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" />
+				<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+					<Link text="{mdlcharm>OBJECT_ID}" target="{ProductPicUrl}" press="handlePress"/>
+
+				</VBox>
+				<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+
+					<Label text="{mdlcharm>DESCRIPTION}"/>
+				</VBox>				
+			</HBox>
+		</CustomListItem>
+
+	</List>
+</mvc:View>
